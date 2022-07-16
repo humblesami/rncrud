@@ -13,10 +13,11 @@ class UserDetailScreen extends Component {
       isLoading: true
     };
   }
- 
+
   componentDidMount() {
-    const dbRef = firebase.firestore().collection('users').doc(this.props.route.params.userkey)
-    dbRef.get().then((res) => {
+    // const dbRef = firebase.firestore().collection('users').doc(this.props.route.params.userkey)
+    const dbRef = firebase;
+    dbRef.get_data('/api/user-detail').then((res) => {
       if (res.exists) {
         const user = res.data();
         this.setState({
@@ -81,8 +82,8 @@ class UserDetailScreen extends Component {
         {text: 'Yes', onPress: () => this.deleteUser()},
         {text: 'No', onPress: () => console.log('No item was removed'), style: 'cancel'},
       ],
-      { 
-        cancelable: true 
+      {
+        cancelable: true
       }
     );
   }
@@ -123,7 +124,7 @@ class UserDetailScreen extends Component {
         <View style={styles.button}>
           <Button
             title='Update'
-            onPress={() => this.updateUser()} 
+            onPress={() => this.updateUser()}
             color="#19AC52"
           />
           </View>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   button: {
-    marginBottom: 7, 
+    marginBottom: 7,
   }
 })
 

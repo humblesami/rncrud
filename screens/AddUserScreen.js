@@ -5,7 +5,8 @@ import firebase from '../database/firebaseDb';
 class AddUserScreen extends Component {
   constructor() {
     super();
-    this.dbRef = firebase.firestore().collection('users');
+    // this.dbRef = firebase.firestore().collection('users');
+    this.dbRef = firebase;
     this.state = {
       name: '',
       email: '',
@@ -26,8 +27,8 @@ class AddUserScreen extends Component {
     } else {
       this.setState({
         isLoading: true,
-      });      
-      this.dbRef.add({
+      });
+      this.dbRef.post_data('/api/user-add', {
         name: this.state.name,
         email: this.state.email,
         mobile: this.state.mobile,
@@ -85,7 +86,7 @@ class AddUserScreen extends Component {
         <View style={styles.button}>
           <Button
             title='Add User'
-            onPress={() => this.storeUser()} 
+            onPress={() => this.storeUser()}
             color="#19AC52"
           />
         </View>

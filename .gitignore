@@ -12,3 +12,11 @@ web-report/
 
 # macOS
 .DS_Store
+.vscode
+.expo-shared
+.expo
+*.lock
+*-lock.json
+*.log
+.bash_profile
+
